@@ -50,7 +50,7 @@ resource "azurerm_cognitive_account" "accounts" {
     for_each = each.value.network_acls != null ? [each.value.network_acls] : []
     content {
       default_action = try(each.value.network_acls.default_action, null)
-      ip_rules = network_acls.value.ip_rules
+      ip_rules       = network_acls.value.ip_rules
 
       dynamic "virtual_network_rules" {
         for_each = try(each.value.network_acls.virtual_network_rules, []) != [] ? [each.value.network_acls.virtual_network_rules] : []
