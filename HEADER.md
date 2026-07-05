@@ -70,8 +70,8 @@ module "cognitive_account" {
       project_management_enabled = true
 
       deployments = {
-        "gpt-4o-mini" = {
-          model = { name = "gpt-4o-mini", version = "2024-07-18" }
+        "gpt-5-mini" = {
+          model = { name = "gpt-5-mini", version = "2025-08-07" }
           sku   = { name = "GlobalStandard", capacity = 10 }
         }
       }

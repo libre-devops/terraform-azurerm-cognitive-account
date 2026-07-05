@@ -62,13 +62,15 @@ module "cognitive_account" {
         ip_rules       = ["203.0.113.0/24"]
       }
 
+      # Current GA models on the consumption (GlobalStandard) SKU. Model availability moves, so
+      # confirm before pinning: az cognitiveservices model list --location uksouth -o table.
       deployments = {
-        "gpt-4o-mini" = {
-          model = { name = "gpt-4o-mini", version = "2024-07-18" }
+        "gpt-5-mini" = {
+          model = { name = "gpt-5-mini", version = "2025-08-07" }
           sku   = { name = "GlobalStandard", capacity = 10 }
         }
-        "text-embedding-3-large" = {
-          model = { name = "text-embedding-3-large", version = "1" }
+        "text-embedding-3-small" = {
+          model = { name = "text-embedding-3-small", version = "1" }
           sku   = { name = "GlobalStandard", capacity = 10 }
         }
       }
