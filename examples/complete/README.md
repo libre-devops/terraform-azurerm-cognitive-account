@@ -118,9 +118,10 @@ module "cognitive_account" {
       kind                          = "FormRecognizer"
       public_network_access_enabled = true
 
+      # FormRecognizer (Document Intelligence) does not support network_acls.bypass, so it is omitted
+      # here (unlike the AIServices account above, which can bypass for trusted Azure services).
       network_acls = {
         default_action = "Deny"
-        bypass         = "AzureServices"
         ip_rules       = ["203.0.113.0/24"]
       }
     }

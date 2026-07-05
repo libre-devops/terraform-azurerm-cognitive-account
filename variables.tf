@@ -162,6 +162,16 @@ variable "cognitive_accounts" {
     error_message = "network_acls.default_action must be Allow or Deny."
   }
 
+  # network_acls.bypass is only accepted by the AI / multi-service kinds; FormRecognizer, Speech,
+  # Vision, and others reject it. try() guards the deref (Terraform 1.9 evaluates both || operands).
+  validation {
+    condition = alltrue([
+      for a in values(var.cognitive_accounts) :
+      try(a.network_acls.bypass, null) == null || contains(["AIServices", "OpenAI", "CognitiveServices"], a.kind)
+    ])
+    error_message = "network_acls.bypass is only supported on AIServices, OpenAI, or CognitiveServices accounts; omit it for other kinds (for example FormRecognizer / Document Intelligence)."
+  }
+
   validation {
     condition = alltrue([
       for a in values(var.cognitive_accounts) :

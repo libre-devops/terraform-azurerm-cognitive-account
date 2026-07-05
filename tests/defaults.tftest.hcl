@@ -195,6 +195,22 @@ run "rejects_deployment_on_speech_account" {
   expect_failures = [var.cognitive_accounts]
 }
 
+# Validation: network_acls.bypass is rejected on kinds that do not support it (FormRecognizer).
+run "rejects_bypass_on_form_recognizer" {
+  command = plan
+
+  variables {
+    cognitive_accounts = {
+      "docintel-ldo-uks-tst-01" = {
+        kind         = "FormRecognizer"
+        network_acls = { default_action = "Deny", bypass = "AzureServices" }
+      }
+    }
+  }
+
+  expect_failures = [var.cognitive_accounts]
+}
+
 # Validation: project management is only supported on AIServices accounts.
 run "rejects_project_management_on_openai" {
   command = plan
