@@ -3,14 +3,14 @@ output "account_ids" {
   value       = module.cognitive_account.ids
 }
 
-output "endpoints" {
-  description = "Map of account name to its endpoint."
-  value       = module.cognitive_account.endpoints
-}
-
 output "deployment_ids" {
   description = "Map of \"<account>/<deployment>\" to deployment id."
   value       = module.cognitive_account.deployment_ids
+}
+
+output "endpoints" {
+  description = "Map of account name to its endpoint."
+  value       = module.cognitive_account.endpoints
 }
 
 output "rai_policy_ids" {

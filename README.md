@@ -70,8 +70,8 @@ module "cognitive_account" {
       project_management_enabled = true
 
       deployments = {
-        "gpt-4o-mini" = {
-          model = { name = "gpt-4o-mini", version = "2024-07-18" }
+        "gpt-5-mini" = {
+          model = { name = "gpt-5-mini", version = "2025-08-07" }
           sku   = { name = "GlobalStandard", capacity = 10 }
         }
       }
@@ -175,8 +175,8 @@ No modules.
 | <a name="output_deployment_ids_zipmap"></a> [deployment\_ids\_zipmap](#output\_deployment\_ids\_zipmap) | Map of "<account>/<deployment>" to a { name, id } object. |
 | <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | Map of account name to its (OpenAI-compatible) endpoint. |
 | <a name="output_identities"></a> [identities](#output\_identities) | Map of account name to its managed identity { principal\_id, tenant\_id } (principal\_id is populated for system-assigned identities). |
-| <a name="output_ids"></a> [ids](#output\_ids) | Map of account name to its resource id. |
-| <a name="output_ids_zipmap"></a> [ids\_zipmap](#output\_ids\_zipmap) | Map of account name to a { name, id } object, for passing where both are needed together. |
+| <a name="output_ids"></a> [ids](#output\_ids) | Map of account name to its resource id. Consumers building child resources from these ids (for example AI Foundry projects) are ordered after the account's own children too, see the depends\_on note below. |
+| <a name="output_ids_zipmap"></a> [ids\_zipmap](#output\_ids\_zipmap) | Map of account name to a { name, id } object, for passing where both are needed together. Carries the same child-resource ordering as ids. |
 | <a name="output_names"></a> [names](#output\_names) | The account names. |
 | <a name="output_primary_access_keys"></a> [primary\_access\_keys](#output\_primary\_access\_keys) | Map of account name to its primary access key (empty when local\_auth\_enabled is false). Prefer Entra ID token auth. |
 | <a name="output_rai_policy_ids"></a> [rai\_policy\_ids](#output\_rai\_policy\_ids) | Map of RAI policy key to its id: default policies keyed by account name, custom policies keyed by "<account>/<policy>". |
